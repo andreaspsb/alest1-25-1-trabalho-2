@@ -430,7 +430,13 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
             return null;            
         }
 
-        return elementos;
+        //retornar array sem os nulls
+        T[] retorno = (T[]) Array.newInstance(raiz.chave.getClass(), pos);
+        for (int i = 0; i < pos; i++) {
+            retorno[i] = elementos[i];
+        }
+
+        return retorno;
 
     }    
     

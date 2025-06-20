@@ -37,10 +37,10 @@ public class App {
         int chavePesquisa = numeros[qtdElementos - 1];
         elementos = abp.obterChavesAteChavePesquisa(chavePesquisa);
         String arquivoResultado = "src/arquivos/resultado.txt";
-
+        
         if (elementos != null) {
             gravarArquivo(arquivoResultado, elementos);
-            gravarArquivoAux(arquivoResultado, String.valueOf(qtdElementos), true);            
+            gravarArquivoAux(arquivoResultado, String.format("Achou apos visitar %d nodos", elementos.length), true);            
         } else {
             gravarArquivoAux(arquivoResultado, "Não achou", false);            
         }
