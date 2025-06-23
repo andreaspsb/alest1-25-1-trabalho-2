@@ -58,17 +58,17 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
             tamanho = 1;
             return;
         }
-        this.inserir(chave, n, raiz);
+        this.inserir(n, raiz);
     }
 
-    private void inserir(T chave, Nodo n, Nodo pai) {
-        if (chave.compareTo(pai.chave) < 0) {
+    private void inserir(Nodo n, Nodo pai) {
+        if (n.chave.compareTo(pai.chave) < 0) {
             if (pai.filhoEsquerda == null) {
                 pai.filhoEsquerda = n;
                 n.pai = pai;
                 tamanho++;
             } else {
-                inserir(chave, n, pai.filhoEsquerda);
+                inserir(n, pai.filhoEsquerda);
             }
         } else {
             if (pai.filhoDireita == null) {
@@ -76,7 +76,7 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
                 n.pai = pai;
                 tamanho++;
             } else {
-                inserir(chave, n, pai.filhoDireita);
+                inserir(n, pai.filhoDireita);
             }
         }
     }
