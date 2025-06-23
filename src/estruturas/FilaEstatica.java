@@ -14,7 +14,7 @@ public class FilaEstatica<T> {
         tamanho = 0;
     }
 
-    public int getTamanho() {
+    public int obterTamanho() {
         return tamanho;
     }
 

@@ -25,7 +25,7 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
             System.out.println();
         }
 
-        public int getGrau() {
+        public int obterGrau() {
             int qtdFilhos = 0;
 
             if (filhoEsquerda != null) {
@@ -134,13 +134,13 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
         tamanho = 0;
     }
 
-    public int getGrau(T chave) {
+    public int obterGrau(T chave) {
         Nodo n = obterNodo(chave);
         if (n == null) {
             return -1;
         }
 
-        return n.getGrau();
+        return n.obterGrau();
     }
 
     public void remover(T chave) {
@@ -151,7 +151,7 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
 
         Nodo pai = n.pai;
 
-        int grau = n.getGrau();
+        int grau = n.obterGrau();
         if (grau == 0) {
             if (obterTamanho() == 1) {
                 limpar();
@@ -244,13 +244,12 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
         if (tamanho == 0) {
             return null;
         }
-        T[] elementos = (T[]) Array.newInstance(raiz.chave.getClass(), tamanho);
-        Nodo n = raiz;
-        Integer pos = 0;
-        pos = elementosPosOrdem(elementos, n.filhoEsquerda, pos);
-        pos = elementosPosOrdem(elementos, n.filhoDireita, pos);
 
-        elementos[pos] = n.chave;
+        @SuppressWarnings("unchecked")
+        T[] elementos = (T[]) Array.newInstance(raiz.chave.getClass(), tamanho);
+        Integer pos = 0;
+        
+        elementosPosOrdem(elementos, raiz, pos);
 
         return elementos;
     }
@@ -272,15 +271,12 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
         if (tamanho == 0) {
             return null;
         }
-
+        
+        @SuppressWarnings("unchecked")
         T[] elementos = (T[]) Array.newInstance(raiz.chave.getClass(), tamanho);
-        Nodo n = raiz;
         Integer pos = 0;
 
-        elementos[pos] = n.chave;
-        pos++;
-        pos = elementosPreOrdem(elementos, n.filhoEsquerda, pos);
-        pos = elementosPreOrdem(elementos, n.filhoDireita, pos);        
+        elementosPreOrdem(elementos, raiz, pos);
 
         return elementos;
     }
@@ -301,16 +297,13 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
     public T[] elementosCentralOrdem() {
         if (tamanho == 0) {
             return null;
-        }
+        }        
 
+        @SuppressWarnings("unchecked")
         T[] elementos = (T[]) Array.newInstance(raiz.chave.getClass(), tamanho);
-        Nodo n = raiz;
         Integer pos = 0;
 
-        pos = elementosCentralOrdem(elementos, n.filhoEsquerda, pos);
-        elementos[pos] = n.chave;
-        pos++;
-        pos = elementosCentralOrdem(elementos, n.filhoDireita, pos);        
+        elementosCentralOrdem(elementos, raiz, pos);                
 
         return elementos;
     }
@@ -333,6 +326,7 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
             return null;
         }
 
+        @SuppressWarnings("unchecked")
         T[] elementos = (T[]) Array.newInstance(raiz.chave.getClass(), tamanho);
         Integer pos = 0;
 
@@ -340,7 +334,7 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
 
         fila.enfileirar(raiz);
 
-        while (fila.getTamanho() != 0) {
+        while (fila.obterTamanho() != 0) {
             Nodo n = fila.desenfileirar();
             elementos[pos] = n.chave;
             pos++;
@@ -406,6 +400,8 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
     }
 
     public T[] obterChavesAteChavePesquisa(T chave) {
+        
+        @SuppressWarnings("unchecked")
         T[] elementos = (T[]) Array.newInstance(raiz.chave.getClass(), tamanho);
         Integer pos = 0;
         Nodo n = raiz;
@@ -430,7 +426,8 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
             return null;            
         }
 
-        //retornar array sem os nulls
+        //retornar array sem os nulls        
+        @SuppressWarnings("unchecked")
         T[] retorno = (T[]) Array.newInstance(raiz.chave.getClass(), pos);
         for (int i = 0; i < pos; i++) {
             retorno[i] = elementos[i];
