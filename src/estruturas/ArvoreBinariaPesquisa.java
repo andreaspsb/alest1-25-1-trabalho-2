@@ -210,8 +210,9 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
         }
 
         tamanho--;
-    }
-
+    }    
+    
+    // metodo privado usado pelo remover
     private Nodo[] elementosCentralOrdem(Nodo raiz) {
         if (tamanho == 0) {
             return null;
@@ -219,7 +220,7 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
         
         Nodo[] elementos = (Nodo[]) new Object[tamanho];
         Integer pos = 0;
-        
+
         pos = elementosCentralOrdem(elementos, raiz, pos);               
 
         return elementos;
