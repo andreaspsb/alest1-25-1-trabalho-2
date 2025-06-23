@@ -216,13 +216,11 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
         if (tamanho == 0) {
             return null;
         }
+        
         Nodo[] elementos = (Nodo[]) new Object[tamanho];
-        Nodo n = raiz;
         Integer pos = 0;
-        pos = elementosCentralOrdem(elementos, n.filhoEsquerda, pos);
-        elementos[pos] = n;
-        pos++;
-        pos = elementosCentralOrdem(elementos, n.filhoDireita, pos);        
+        
+        pos = elementosCentralOrdem(elementos, raiz, pos);               
 
         return elementos;
     }
@@ -248,7 +246,7 @@ public class ArvoreBinariaPesquisa<T extends Comparable<T>> {
         @SuppressWarnings("unchecked")
         T[] elementos = (T[]) Array.newInstance(raiz.chave.getClass(), tamanho);
         Integer pos = 0;
-        
+
         elementosPosOrdem(elementos, raiz, pos);
 
         return elementos;
